@@ -1,0 +1,120 @@
+# Silly filters
+alias g='git'
+alias get='git'
+
+# Cloning repositories
+alias gcl='git clone'
+alias gsu='git submodule update --init --recursive'
+
+# Getting data from repositories
+## fetches
+alias gf='git fetch --all --prune'
+alias gft='git fetch --all --prune --tags'
+alias gfv='git fetch --all --prune --verbose'
+alias gftv='git fetch --all --prune --tags --verbose'
+alias gup='git fetch && git rebase'
+## pulls
+alias gl='git pull'
+alias glum='git pull upstream master'
+alias gpr='git pull --rebase'
+alias gpp='git pull && git push'
+
+# repository status
+## git status
+alias gst='git status'
+alias gs='git status'
+alias gss='git status -s'
+## reverting
+alias gus='git reset HEAD'
+alias gpristine='git reset --hard && git clean -dfx'
+## view repos
+alias gr='git remote'
+alias grv='git remote -v'
+alias gra='git remote add'
+
+# pushses
+alias gp='git push'
+alias gpo='git push origin'
+alias gpu='git push --set-upstream'
+alias gpom='git push origin master'
+
+# commiting
+## Git commit
+alias gc='git commit -v'
+alias gca='git commit -v -a'
+alias gcm='git commit -v -m'
+alias gci='git commit --interactive'
+## Staging archives
+alias ga='git add'
+alias gap='git add -p'
+alias gall='git add -A'
+## Show commits
+# From http://blogs.atlassian.com/2014/10/advanced-git-aliases/
+# Show commits since last pull
+alias gnew="git log HEAD@{1}..HEAD@{0}"
+# Add uncommitted and unstaged changes to the last commit
+alias gcaa="git commit -a --amend -C HEAD"
+## logs
+### From http://blogs.atlassian.com/2014/10/advanced-git-aliases/
+### Show commits since last pull
+alias gnew="git log HEAD@{1}..HEAD@{0}"
+### mines
+alias gll='git log --graph --pretty=oneline --abbrev-commit'
+alias gg="git log --graph --pretty=format:'%C(bold)%h%Creset%C(magenta)%d%Creset %s %C(yellow)<%an> %C(cyan)(%cr)%Creset' --abbrev-commit --date=relative"
+alias ggs="gg --stat"
+alias gsl="git shortlog -sn"
+alias gw="git whatchanged"
+alias gcount='git shortlog -sn'
+
+# branching
+# branches
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbt='git branch --track'
+alias gdel='git branch -D'
+#changing
+alias go='git checkout'
+alias gcom='git checkout master'
+alias gcb='git checkout -b'
+alias gcob='git checkout -b'
+alias gct='git checkout --track'
+
+# tagging
+alias gt="git tag"
+alias gta="git tag -a"
+alias gtd="git tag -d"
+alias gtl="git tag -l"
+
+# mergings
+alias gclean='git clean -fd'
+alias gm="git merge"
+alias gcp='git cherry-pick'
+alias gmu='git fetch origin -v; git fetch upstream -v; git merge upstream/master'
+
+#others
+alias gexport='git archive --format zip --output'
+
+case $OSTYPE in
+  darwin*)
+    alias gtls="git tag -l | gsort -V"
+    ;;
+  *)
+    alias gtls='git tag -l | sort -V'
+    ;;
+esac
+
+if [ -z "$EDITOR" ]; then
+    case $OSTYPE in
+      linux*)
+        alias gd='git diff | vim -R -'
+        ;;
+      darwin*)
+        alias gd='git diff | mate'
+        ;;
+      *)
+        alias gd='git diff'
+        ;;
+    esac
+else
+    alias gd="git diff | $EDITOR"
+fi
