@@ -1,8 +1,8 @@
 ## Git flow variables
-FEATURE='$FEATURE'
-BUGFIX='$FEATUREbugfix/'
+FEATURE='feature/'
+BUGFIX='feature/bugfix/'
 HOTFIX='hotfix/'
-PREFIX='$PREFIX'
+PREFIX='BK-'
 
 
 ## Git complex functions
