@@ -7,7 +7,7 @@ In your .bashrc, add
 CONF_DIR="Path to the repo"
 
 # Aliases
-source $CONF/.gitAliases
+source $CONF_DIR/.gitAliases
 # Git complex functions
-source $CONF/.gitFunctions.sh
+source $CONF_DIR/.gitFunctions.sh
 ```
