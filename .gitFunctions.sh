@@ -296,7 +296,7 @@ function gof() {
     gogo feature/BK-$1
   elif [ "$2" == '-b' ]; then
     go feature/bugfix/BK-$1
-  elif [ "$2" == '-bs' |  "$2" == '-sb'  ]; then
+  elif [ "$2" == '-bs' |  "$2" == '-sb' ]; then
     gogo feature/bugfix/BK-$1
   else
     go feature/BK-$1
