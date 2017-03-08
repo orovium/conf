@@ -1,3 +1,10 @@
+## Git flow variables
+FEATURE='$FEATURE'
+BUGFIX='$FEATUREbugfix/'
+HOTFIX='hotfix/'
+PREFIX='$PREFIX'
+
+
 ## Git complex functions
 
 function git_remote {
@@ -279,7 +286,7 @@ function gogo() {
   # about 'Go on save mode to a branch and update it -- fetch + checkout + pull'
   # group 'git'
   # param '1: target branch'
-  # example '$ gogo feature/XYZ'
+  # example '$ gogo $FEATUREXYZ'
   gf
   go $1
   gl
@@ -293,13 +300,13 @@ function gof() {
   # example '$ gof XYZ'
 
   if [ "$2" == '-s' ]; then
-    gogo feature/BK-$1
+    gogo $FEATURE$PREFIX$1
   elif [ "$2" == '-b' ]; then
-    go feature/bugfix/BK-$1
+    go $FEATUREbugfix/$PREFIX$1
   elif [ "$2" == '-bs' |  "$2" == '-sb' ]; then
-    gogo feature/bugfix/BK-$1
+    gogo $FEATUREbugfix/$PREFIX$1
   else
-    go feature/BK-$1
+    go $FEATURE$PREFIX$1
   fi
 }
 
@@ -311,9 +318,9 @@ function goe() {
   # example '$ goe XYZ'
 
   if [ "$2" == '-s' ]; then
-    gogo epic/BK-$1
+    gogo epic/$PREFIX$1
   else
-    go epic/BK-$1
+    go epic/$PREFIX$1
   fi
 }
 
@@ -321,7 +328,7 @@ function create_epic() {
   # about 'Make a epic branch and publish it into origin'
   # group 'git'
   # param '1: epic JIRA ID'
-  # example '$ create_epic BK-XYZ'
+  # example '$ create_epic $PREFIXXYZ'
 
   gogo master
   go -b epic/$1
@@ -337,14 +344,14 @@ function git_rename() {
   # example '$ git rename 4056 4056-bck -f'
 
   if [ "$3" == '-e' ]; then
-    PREFIX="epic/BK-"
+    R_PREFIX="epic/$PREFIX"
   elif [ "$3" == '-f' ]; then
-    PREFIX="feature/BK-"
+    PREFIX="$FEATURE$PREFIX"
   else
-    PREFIX=""
+    R_PREFIX=""
   fi
-  OLD_BRANCH="$PREFIX$1"
-  NEW_BRANCH="$PREFIX$2"
+  OLD_BRANCH="$R_PREFIX$1"
+  NEW_BRANCH="$R_PREFIX$2"
   gogo $OLD_BRANCH
   git branch -m $OLD_BRANCH $NEW_BRANCH
   git push origin :$OLD_BRANCH $NEW_BRANCH
