@@ -317,26 +317,6 @@ function goe() {
   fi
 }
 
-function feed() {
-  CURRENT=$(pwd)
-  cd $bweb
-  gf
-  if  go $1
-  then
-    gm origin/master
-  fi
-
-  cd $bfw
-  gf
-  if go $1
-  then
-    gm origin/master
-  fi
-
-  cd $CURRENT
-}
-
-
 function create_epic() {
   # about 'Make a epic branch and publish it into origin'
   # group 'git'
