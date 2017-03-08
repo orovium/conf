@@ -349,3 +349,22 @@ function git_rename() {
   git branch -m $OLD_BRANCH $NEW_BRANCH
   git push origin :$OLD_BRANCH $NEW_BRANCH
 }
+
+function feed() {
+  CURRENT=$(pwd)
+  cd $bweb
+  gf
+  if  go $1
+  then
+    gm origin/master
+  fi
+
+  cd $bfw
+  gf
+  if go $1
+  then
+    gm origin/master
+  fi
+
+  cd $CURRENT
+}
