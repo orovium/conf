@@ -382,7 +382,7 @@ function git_rename() {
     FOLDER='release'
   elif [ "$2" == '-b' ]; then
     FOLDER='bugfix'
-  elif [ "$2" == '-b' ]; then
+  elif [ "$2" == '-p' ]; then
     gogo master
     go -b $1
     exit
