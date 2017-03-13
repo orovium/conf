@@ -55,9 +55,6 @@ alias gnew="git log HEAD@{1}..HEAD@{0}"
 # Add uncommitted and unstaged changes to the last commit
 alias gcaa="git commit -a --amend -C HEAD"
 ## logs
-### From http://blogs.atlassian.com/2014/10/advanced-git-aliases/
-### Show commits since last pull
-alias gnew="git log HEAD@{1}..HEAD@{0}"
 ### mines
 alias gll='git log --graph --pretty=oneline --abbrev-commit'
 alias gg="git log --graph --pretty=format:'%C(bold)%h%Creset%C(magenta)%d%Creset %s %C(yellow)<%an> %C(cyan)(%cr)%Creset' --abbrev-commit --date=relative"
