@@ -1,8 +1,10 @@
 ## Git flow variables
 FEATURE='feature/'
-BUGFIX='feature/bugfix/'
+BUGFIX='bugfix/'
 HOTFIX='hotfix/'
 PREFIX='BK-'
+PROD_BRANCH='prod'
+DEV_BRANCH='master'
 
 
 ## Git complex functions
@@ -302,7 +304,7 @@ function gof() {
   if [ "$2" == '-s' ]; then
     gogo $FEATURE$PREFIX$1
   elif [ "$2" == '-b' ]; then
-    go $FEATUREbugfix/$PREFIX$1
+    go $BUGFIX/$PREFIX$1
   elif [ "$2" == '-bs' |  "$2" == '-sb' ]; then
     gogo $FEATUREbugfix/$PREFIX$1
   else
@@ -356,3 +358,35 @@ function git_rename() {
   git branch -m $OLD_BRANCH $NEW_BRANCH
   git push origin :$OLD_BRANCH $NEW_BRANCH
 }
+
+
+ # region git flow
+ 
+ function flow_start() 
+ {
+  # about 'start a new branch accord git flow'
+  # group 'git'
+  # param '1: Ticket number, without $PREFIX'
+  # param '2: Branch type:
+  #           -f = feature (default)
+  #           -h = hotfix
+  #           -r = release
+  #           -b = bugfix
+  #           -p = personalized (no add $PREFIX)'
+  FOLDER=''
+  BASE=$DEV_BRANCH
+  if [ "$2" == -h ]; then
+    FOLDER='hotfix'
+    BASE=$PROD_BRANCH
+  elif [ "$2" == '-r' ]; then
+    FOLDER='release'
+  elif [ "$2" == '-b' ]; then
+    FOLDER='bugfix'
+  elif [ "$2" == '-p' ]; then
+    gogo master
+    go -b $1
+    exit
+  fi
+  gogo $BASE
+  git flow $FOLDER start $PREFIX$1
+ }
