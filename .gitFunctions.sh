@@ -1,6 +1,6 @@
 ## Git flow variables
 FEATURE='feature/'
-BUGFIX='feature/bugfix/'
+BUGFIX='bugfix/'
 HOTFIX='hotfix/'
 PREFIX='BK-'
 PROD_BRANCH='prod'
@@ -304,7 +304,7 @@ function gof() {
   if [ "$2" == '-s' ]; then
     gogo $FEATURE$PREFIX$1
   elif [ "$2" == '-b' ]; then
-    go $FEATUREbugfix/$PREFIX$1
+    go $BUGFIX/$PREFIX$1
   elif [ "$2" == '-bs' |  "$2" == '-sb' ]; then
     gogo $FEATUREbugfix/$PREFIX$1
   else
@@ -373,7 +373,7 @@ function git_rename() {
   #           -r = release
   #           -b = bugfix
   #           -p = personalized (no add $PREFIX)'
-  FOLDER='feature'
+  FOLDER=''
   BASE=$DEV_BRANCH
   if [ "$2" == -h ]; then
     FOLDER='hotfix'
