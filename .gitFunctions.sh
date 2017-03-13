@@ -326,7 +326,6 @@ function goe() {
   fi
 }
 
->>>>>>> release/v.1.0.2
 function create_epic() {
   # about 'Make a epic branch and publish it into origin'
   # group 'git'
