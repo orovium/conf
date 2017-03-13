@@ -375,11 +375,13 @@ function git_rename() {
   #           -p = personalized (no add $PREFIX)'
   FOLDER=''
   BASE=$DEV_BRANCH
+  THIS_PREFIX=$PREFIX
   if [ "$2" == -h ]; then
     FOLDER='hotfix'
     BASE=$PROD_BRANCH
   elif [ "$2" == '-r' ]; then
     FOLDER='release'
+    THIS_PREFIX='v.'
   elif [ "$2" == '-b' ]; then
     FOLDER='bugfix'
   elif [ "$2" == '-p' ]; then
@@ -388,5 +390,5 @@ function git_rename() {
     exit
   fi
   gogo $BASE
-  git flow $FOLDER start $PREFIX$1
+  git flow $FOLDER start $THIS_PREFIX$1
  }
